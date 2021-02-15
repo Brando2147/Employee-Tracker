@@ -138,17 +138,17 @@ function addEmployees() {
         {
             name: "add_LastName",
             type: "input",
-            message: "What is employee's last name?",
+            message: "What is the employee's last name?",
         },
         {
             name: "add_RoleID",
             type: "input",
-            message: "What is employee's role ID?",
+            message: "What is the employee's role ID?",
         },
         {
             name: "add_ManagerID",
             type: "input",
-            message: "What is the manager ID?",
+            message: "What is this employee's manager's ID?",
         }])
         .then(function (answer) {
             var query = "INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?,?,?,?)";
@@ -176,7 +176,7 @@ function addRoles() {
         {
             name: "add_Department",
             type: "input",
-            message: "What is the employee's department ID?",
+            message: "What is the department of ID?",
         }])
         .then(function (answer) {
             var query = "INSERT INTO role (title, salary, department_id) VALUES (?,?,?)";
@@ -194,12 +194,12 @@ function updateRoles() {
     inquirer.prompt([{
         name: "add_RoleID",
         type: "input",
-        message: "what is Role ID?"
+        message: "what is the Role ID to update?"
     },
     {
         name: "add_EmployeeID",
         type: "input",
-        message: "what is the employee?"
+        message: "what is the employee's ID?"
     }]).then(function (answer) {
         var query = "UPDATE employee SET role_id= ? where id= ?";
         connection.query(query, [answer.add_RoleID, answer.add_EmployeeID], function (err, res) {
