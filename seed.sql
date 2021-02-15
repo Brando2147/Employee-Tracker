@@ -1,3 +1,5 @@
+/* Import test data to SQL */
+
 INSERT INTO employee (first_name, last_name, role_id, manager_id)
 VALUES ( "Alicia", "Qiu", 1, 10);
 

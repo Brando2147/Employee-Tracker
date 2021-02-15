@@ -2,21 +2,16 @@ var mysql = require("mysql");
 var inquirer = require("inquirer");
 var consoleTable = require("console.table");
 
-
+// Connection info to database
 var connection = mysql.createConnection({
     host: "localhost",
-
-    // Your port; if not 3306
     port: 3306,
-
-    // Your username
     user: "root",
-
-    // Your password
     password: "password",
     database: "employee_db"
 });
 
+// After connection query to initialize program
 connection.connect(function (err) {
     if (err) throw err;
     console.log("connected as id " + connection.threadId + "\n");
@@ -25,7 +20,7 @@ connection.connect(function (err) {
 
 
 
-
+// Initial function to prompt menu
 function init() {
     inquirer
         .prompt({
@@ -80,6 +75,7 @@ function init() {
         });
 }
 
+// Function to view departments 
 function viewDepartments() {
     var query = "SELECT * FROM department";
     connection.query(query, function (err, res) {
@@ -90,6 +86,7 @@ function viewDepartments() {
     );
 }
 
+// Function to view employees
 function viewEmployees() {
     var query = connection.query(`SELECT role_id, first_name, last_name, title, salary FROM employee INNER JOIN role ON employee.role_id = role.id INNER JOIN department ON role.department_id = department.id`,
         function (err, res) {
@@ -100,7 +97,7 @@ function viewEmployees() {
     );
 }
 
-
+// Function to view roles
 function viewRoles() {
     var query = connection.query(`SELECT title, name, salary FROM role INNER JOIN department ON role.department_id = department.id`,
         function (err, res) {
@@ -111,7 +108,7 @@ function viewRoles() {
 }
 
 
-
+// Function to add departments
 function addDepartments() {
     inquirer
         .prompt({
@@ -130,6 +127,7 @@ function addDepartments() {
         });
 }
 
+// Function to add employees
 function addEmployees() {
     inquirer
         .prompt([{
@@ -162,7 +160,7 @@ function addEmployees() {
         });
 }
 
-
+// Function to add roles
 function addRoles() {
     inquirer
         .prompt([{
@@ -191,7 +189,7 @@ function addRoles() {
 }
 
 
-
+// Function to update roles
 function updateRoles() {
     inquirer.prompt([{
         name: "add_RoleID",

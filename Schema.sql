@@ -1,3 +1,5 @@
+/* File to create the necessary tables in SQL*/
+
 DROP DATABASE IF EXISTS employee_db;
 
 CREATE DATABASE employee_db;
